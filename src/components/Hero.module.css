@@ -1,0 +1,51 @@
+.heroSection {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: 6rem 2rem 2rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem; /* slight offset to align with the large text baseline */
+}
+
+.subtitle {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  color: #a1a1aa;
+  line-height: 1.6;
+  max-width: 600px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
