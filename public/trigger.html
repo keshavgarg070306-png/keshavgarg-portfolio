@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Outreach Trigger</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg-dark: #080711;
+            --glass-bg: rgba(18, 16, 32, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shadow: rgba(0, 0, 0, 0.4);
+            
+            --primary: #8b5cf6;
+            --primary-glow: rgba(139, 92, 246, 0.3);
+            --primary-grad: linear-gradient(135deg, #a78bfa, #7c3aed);
+            
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-dark: #4b5563;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 45%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Glassmorphism Panel */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px var(--glass-shadow);
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-orb {
+            width: 14px;
+            height: 14px;
+            background: var(--primary-grad);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--primary-glow);
+            animation: pulse 2s infinite alternate;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        h1 span {
+            background: var(--primary-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Setup Panel */
+        .setup-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .help-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .help-link:hover {
+            text-decoration: underline;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            color: #fff;
+            padding: 14px;
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            font-weight: 600;
+            padding: 16px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 15px;
+        }
+
+        .btn-primary {
+            background: var(--primary-grad);
+            color: #fff;
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Control Panel */
+        .btn-trigger {
+            padding: 24px;
+            font-size: 18px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .btn-trigger i {
+            font-size: 24px;
+        }
+
+        .actions-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .actions-row .btn {
+            padding: 12px;
+            font-size: 13px;
+            border-radius: 12px;
+        }
+
+        /* Status Section */
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .status-title {
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--text-muted);
+        }
+
+        .status-badge.queued { color: var(--warning); }
+        .status-badge.queued .status-dot { background-color: var(--warning); animation: flash 1s infinite alternate; }
+
+        .status-badge.in_progress { color: #3b82f6; }
+        .status-badge.in_progress .status-dot { background-color: #3b82f6; animation: flash 0.8s infinite alternate; }
+
+        .status-badge.success { color: var(--success); }
+        .status-badge.success .status-dot { background-color: var(--success); }
+
+        .status-badge.failure { color: var(--danger); }
+        .status-badge.failure .status-dot { background-color: var(--danger); }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .info-row span:last-child {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Logs console */
+        .console {
+            background: #040308;
+            border-radius: 14px;
+            padding: 12px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 120px;
+            overflow-y: auto;
+            color: var(--text-muted);
+            margin-top: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .console-line {
+            margin-bottom: 4px;
+        }
+
+        .console-line.info { color: #9ca3af; }
+        .console-line.success { color: var(--success); }
+        .console-line.error { color: var(--danger); }
+
+        /* Toast notifications */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 10000;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: rgba(18, 16, 32, 0.95);
+            border: 1px solid var(--glass-border);
+            padding: 14px 16px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            animation: slideIn 0.25s ease forwards;
+        }
+
+        .toast.success { border-left: 4px solid var(--success); }
+        .toast.error { border-left: 4px solid var(--danger); }
+
+        .toast i { font-size: 18px; }
+        .toast.success i { color: var(--success); }
+        .toast.error i { color: var(--danger); }
+
+        /* Keyframes */
+        @keyframes pulse {
+            0% { transform: scale(1); filter: brightness(1); }
+            100% { transform: scale(1.15); filter: brightness(1.2); }
+        }
+
+        @keyframes flash {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(-20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <div class="logo-orb"></div>
+                <h1>Outreach<span>Cloud</span></h1>
+            </div>
+        </header>
+
+        <!-- Setup Panel -->
+        <div id="setup-panel" class="glass-card">
+            <h2 style="font-size: 18px; margin-bottom: 8px;">Connect to GitHub</h2>
+            <p class="setup-desc">
+                To trigger outreach directly from your phone, you need a Personal Access Token (PAT).
+                <br><br>
+                <a href="https://github.com/settings/tokens/new?scopes=workflow&description=Outreach%20Mobile%20Trigger" target="_blank" class="help-link">
+                    <i class="ph ph-arrow-square-out"></i> Generate outreach token on GitHub
+                </a>
+                <br>
+                <em>(Make sure to select the <b>workflow</b> scope and click Generate)</em>
+            </p>
+            <div class="input-group">
+                <label for="pat-input">Personal Access Token (PAT)</label>
+                <input type="password" id="pat-input" placeholder="paste github_pat_..." autocomplete="off">
+            </div>
+            <button id="btn-save-token" class="btn btn-primary">
+                <i class="ph ph-key"></i> Save & Connect
+            </button>
+        </div>
+
+        <!-- Control Panel -->
+        <div id="control-panel" class="glass-card hidden">
+            <button id="btn-trigger" class="btn btn-primary btn-trigger">
+                <i class="ph ph-play-circle"></i> Trigger Cold Outreach
+            </button>
+
+            <!-- Status Section -->
+            <div class="status-box">
+                <div class="status-header">
+                    <span class="status-title">GitHub Actions Status</span>
+                    <span id="run-status" class="status-badge">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Checking...</span>
+                    </span>
+                </div>
+                
+                <div class="info-row">
+                    <span>Workflow:</span>
+                    <span>Cold Email Outreach</span>
+                </div>
+                <div class="info-row">
+                    <span>Last Run ID:</span>
+                    <span id="run-id">-</span>
+                </div>
+                <div class="info-row">
+                    <span>Started:</span>
+                    <span id="run-time">-</span>
+                </div>
+
+                <div class="console" id="status-console">
+                    <div class="console-line info">Initial state loaded successfully.</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                <div class="actions-row">
+                    <a id="btn-view-actions" href="https://github.com/keshavgarg070306-png/C-emails/actions" target="_blank" class="btn btn-secondary" style="text-decoration: none;">
+                        <i class="ph ph-github-logo"></i> Actions Tab
+                    </a>
+                    <button id="btn-change-token" class="btn btn-secondary">
+                        <i class="ph ph-lock-simple"></i> Change Token
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toasts -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script>
+        // CONFIG
+        const OWNER = 'keshavgarg070306-png';
+        const REPO = 'C-emails';
+        const WORKFLOW_FILE = 'outreach.yml';
+        
+        let token = '';
+        let checkInterval = null;
+
+        // DOM elements
+        const setupPanel = document.getElementById('setup-panel');
+        const controlPanel = document.getElementById('control-panel');
+        const patInput = document.getElementById('pat-input');
+        const btnSaveToken = document.getElementById('btn-save-token');
+        const btnTrigger = document.getElementById('btn-trigger');
+        const btnChangeToken = document.getElementById('btn-change-token');
+        const btnViewActions = document.getElementById('btn-view-actions');
+        const runStatus = document.getElementById('run-status');
+        const runStatusText = runStatus.querySelector('.status-text');
+        const runIdSpan = document.getElementById('run-id');
+        const runTimeSpan = document.getElementById('run-time');
+        const statusConsole = document.getElementById('status-console');
+        const toastContainer = document.getElementById('toast-container');
+
+        // Toast Helper
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            const icon = type === 'success' ? 'ph-check-circle' : 'ph-warning-circle';
+            toast.innerHTML = `<i class="ph ${icon}"></i><span>${message}</span>`;
+            toastContainer.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Console Helper
+        function addConsoleLine(text, type = 'info') {
+            const line = document.createElement('div');
+            line.className = `console-line ${type}`;
+            line.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+            statusConsole.appendChild(line);
+            statusConsole.scrollTop = statusConsole.scrollHeight;
+        }
+
+        // Load token from storage
+        function init() {
+            token = localStorage.getItem('github_outreach_pat') || '';
+            if (token) {
+                setupPanel.classList.add('hidden');
+                controlPanel.classList.remove('hidden');
+                addConsoleLine('Connected securely using saved token.');
+                pollWorkflowStatus();
+                // Start polling every 10 seconds
+                checkInterval = setInterval(pollWorkflowStatus, 10000);
+            } else {
+                setupPanel.classList.remove('hidden');
+                controlPanel.classList.add('hidden');
+            }
+        }
+
+        // Save token
+        btnSaveToken.addEventListener('click', () => {
+            const pat = patInput.value.trim();
+            if (!pat) {
+                showToast('Please enter a valid token.', 'error');
+                return;
+            }
+            localStorage.setItem('github_outreach_pat', pat);
+            patInput.value = '';
+            showToast('Token saved successfully!');
+            init();
+        });
+
+        // Clear token
+        btnChangeToken.addEventListener('click', () => {
+            localStorage.removeItem('github_outreach_pat');
+            token = '';
+            if (checkInterval) clearInterval(checkInterval);
+            showToast('Token cleared.', 'success');
+            init();
+        });
+
+        // Trigger Workflow Dispatch
+        btnTrigger.addEventListener('click', async () => {
+            btnTrigger.disabled = true;
+            btnTrigger.style.opacity = '0.6';
+            addConsoleLine('Sending trigger request to GitHub...', 'info');
+
+            try {
+                const response = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW_FILE}/dispatches`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ref: 'main' })
+                });
+
+                if (response.status === 204) {
+                    showToast('Outreach workflow triggered successfully!', 'success');
+                    addConsoleLine('Trigger accepted. Workflow is booting in the cloud...', 'success');
+                    
+                    // Poll immediately and increase speed for first 30 seconds
+                    setTimeout(pollWorkflowStatus, 2000);
+                    setTimeout(pollWorkflowStatus, 5000);
+                    setTimeout(pollWorkflowStatus, 8000);
+                } else {
+                    const errData = await response.json().catch(() => ({ message: 'Unknown error' }));
+                    showToast(`Error: ${errData.message}`, 'error');
+                    addConsoleLine(`Failed: ${errData.message}`, 'error');
+                }
+            } catch (err) {
+                showToast('Network error triggering workflow.', 'error');
+                addConsoleLine(`Error: ${err.message}`, 'error');
+            } finally {
+                setTimeout(() => {
+                    btnTrigger.disabled = false;
+                    btnTrigger.style.opacity = '1';
+                }, 5000);
+            }
+        });
+
+        // Poll workflow status
+        async function pollWorkflowStatus() {
+            if (!token) return;
+            try {
+                const response = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/actions/runs?per_page=1`, {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        addConsoleLine('Invalid GitHub token. Please re-enter.', 'error');
+                        btnChangeToken.click();
+                    }
+                    return;
+                }
+
+                const data = await response.json();
+                const runs = data.workflow_runs;
+                if (runs && runs.length > 0) {
+                    const lastRun = runs[0];
+                    
+                    // Update spans
+                    runIdSpan.textContent = `#${lastRun.run_number}`;
+                    runTimeSpan.textContent = new Date(lastRun.created_at).toLocaleString();
+                    
+                    // Update status badge classes
+                    let statusClass = 'idle';
+                    let statusLabel = 'Idle';
+                    
+                    const status = lastRun.status; // queued, in_progress, completed
+                    const conclusion = lastRun.conclusion; // success, failure, cancelled, etc.
+                    
+                    if (status === 'queued') {
+                        statusClass = 'queued';
+                        statusLabel = 'Queued';
+                    } else if (status === 'in_progress') {
+                        statusClass = 'in_progress';
+                        statusLabel = 'In Progress';
+                    } else if (status === 'completed') {
+                        statusClass = conclusion === 'success' ? 'success' : 'failure';
+                        statusLabel = conclusion === 'success' ? 'Success' : `Failed (${conclusion})`;
+                    }
+                    
+                    runStatus.className = `status-badge ${statusClass}`;
+                    runStatusText.textContent = statusLabel;
+                    
+                    // Set View button href directly to active run if active
+                    btnViewActions.href = lastRun.html_url;
+                }
+            } catch (err) {
+                console.error('Error polling status:', err);
+            }
+        }
+
+        // Run
+        init();
+    </script>
+</body>
+</html>
