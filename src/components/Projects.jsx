@@ -106,23 +106,14 @@ const Projects = () => {
                 </div>
               </div>
               
-              <AnimatePresence>
-                {hoveredIndex === index && (
-                  <motion.div 
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className={styles.revealContent}
-                  >
-                    <p className={styles.projectDescription}>{project.description}</p>
-                    <div className={styles.techStack}>
-                      {project.tech.map((tech, i) => (
-                        <span key={i} className={styles.techBadge}>{tech}</span>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <div className={styles.revealContent}>
+                <p className={styles.projectDescription}>{project.description}</p>
+                <div className={styles.techStack}>
+                  {project.tech.map((tech, i) => (
+                    <span key={i} className={styles.techBadge}>{tech}</span>
+                  ))}
+                </div>
+              </div>
             </div>
             
             <div className={styles.projectLinks}>
