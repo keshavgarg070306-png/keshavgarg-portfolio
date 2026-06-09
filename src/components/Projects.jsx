@@ -45,7 +45,7 @@ const projectsData = [
     tech: ['Node.js', 'Groq AI API', 'Gmail API'],
     icon: <Bot size={32} />,
     image: '/outreach_engine.png',
-    github: 'https://github.com/keshavgarg070306-png',
+    github: 'https://github.com/keshavgarg070306-png/C-emails',
     live: '#',
     span: 'col-span-2 row-span-1'
   }
