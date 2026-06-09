@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Database, Zap, Bot, Code2 } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
@@ -15,6 +15,17 @@ const projectsData = [
     github: 'https://github.com/keshavgarg070306-png/grassroots-backend',
     live: '#',
     span: 'col-span-2 row-span-2'
+  },
+  {
+    title: 'NexCore ERP',
+    subtitle: 'Enterprise Systems',
+    description: 'A cloud-native monorepo ERP system. Implements multi-role access control (RBAC), real-time financial auditing, HR payroll dashboards, inventory tracking, and automated stock notifications.',
+    tech: ['Spring Boot', 'React', 'TypeScript', 'Tailwind', 'Docker'],
+    icon: <Code2 size={32} />,
+    image: '/nexcore_erp.png',
+    github: 'https://github.com/keshavgarg070306-png/erp',
+    live: '#',
+    span: 'col-span-1 row-span-2'
   },
   {
     title: 'AthleteCoach AI',
@@ -36,7 +47,7 @@ const projectsData = [
     image: '/outreach_engine.png',
     github: 'https://github.com/keshavgarg070306-png',
     live: '#',
-    span: 'col-span-1 row-span-1'
+    span: 'col-span-2 row-span-1'
   }
 ];
 
