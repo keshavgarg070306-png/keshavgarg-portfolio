@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app-container">
+    <div className="app-container" style={{ position: 'relative', overflow: 'hidden' }}>
       {/* Custom Cursor */}
       <motion.div
         className="custom-cursor"
@@ -29,8 +29,22 @@ function App() {
         }}
         transition={{ type: "tween", ease: "backOut", duration: 0.15 }}
       />
+
+      {/* Ambient drifting background blobs */}
+      <div className="ambient-blob blob-1"></div>
+      <div className="ambient-blob blob-2"></div>
       
-      <main>
+      {/* Interactive Mouse-Following Spotlight */}
+      <motion.div
+        className="interactive-bg-glow"
+        animate={{
+          x: mousePosition.x - 250,
+          y: mousePosition.y - 250,
+        }}
+        transition={{ type: "spring", damping: 40, stiffness: 60, mass: 1 }}
+      />
+      
+      <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero />
         <Projects />
         <Experience />

@@ -129,3 +129,59 @@ a {
   flex-direction: column;
   min-height: 100vh;
 }
+
+/* Interactive Background Glow & Ambient Blobs */
+.interactive-bg-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.08) 0%, rgba(251, 146, 60, 0.04) 50%, rgba(0, 0, 0, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(100px);
+  will-change: transform;
+}
+
+.ambient-blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(140px);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  animation: float 20s infinite alternate ease-in-out;
+  will-change: transform;
+}
+
+.blob-1 {
+  width: 600px;
+  height: 600px;
+  background: rgba(250, 204, 21, 0.04);
+  top: -10%;
+  left: -10%;
+  animation-duration: 25s;
+}
+
+.blob-2 {
+  width: 700px;
+  height: 700px;
+  background: rgba(251, 146, 60, 0.03);
+  bottom: -10%;
+  right: -10%;
+  animation-duration: 30s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(60px, 40px) scale(1.08);
+  }
+  100% {
+    transform: translate(-40px, 60px) scale(0.92);
+  }
+}
