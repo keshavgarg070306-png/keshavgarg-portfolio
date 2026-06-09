@@ -135,53 +135,63 @@ a {
   position: fixed;
   top: 0;
   left: 0;
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(250, 204, 21, 0.08) 0%, rgba(251, 146, 60, 0.04) 50%, rgba(0, 0, 0, 0) 70%);
+  /* Vibrant gold-yellow interactive spotlight */
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.28) 0%, rgba(251, 146, 60, 0.15) 40%, rgba(0, 0, 0, 0) 70%);
   pointer-events: none;
   z-index: 0;
-  filter: blur(100px);
+  filter: blur(120px);
   will-change: transform;
 }
 
 .ambient-blob {
   position: fixed;
   border-radius: 50%;
-  filter: blur(140px);
+  filter: blur(150px);
   z-index: 0;
   pointer-events: none;
-  opacity: 0.5;
-  animation: float 20s infinite alternate ease-in-out;
+  opacity: 0.9;
+  animation: float 25s infinite alternate ease-in-out;
   will-change: transform;
 }
 
 .blob-1 {
-  width: 600px;
-  height: 600px;
-  background: rgba(250, 204, 21, 0.04);
-  top: -10%;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.16) 0%, rgba(251, 146, 60, 0.08) 60%, transparent 100%);
+  top: -15%;
   left: -10%;
-  animation-duration: 25s;
+  animation-duration: 22s;
 }
 
 .blob-2 {
-  width: 700px;
-  height: 700px;
-  background: rgba(251, 146, 60, 0.03);
-  bottom: -10%;
+  width: 750px;
+  height: 750px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.24) 0%, rgba(139, 92, 246, 0.1) 60%, transparent 100%);
+  bottom: -15%;
   right: -10%;
-  animation-duration: 30s;
+  animation-duration: 28s;
+}
+
+.blob-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.16) 0%, rgba(244, 63, 94, 0.06) 60%, transparent 100%);
+  top: 40%;
+  left: -20%;
+  animation-duration: 18s;
 }
 
 @keyframes float {
   0% {
-    transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scale(1) rotate(0deg);
   }
   50% {
-    transform: translate(60px, 40px) scale(1.08);
+    transform: translate(80px, 50px) scale(1.15) rotate(180deg);
   }
   100% {
-    transform: translate(-40px, 60px) scale(0.92);
+    transform: translate(-50px, 80px) scale(0.9) rotate(360deg);
   }
 }

@@ -33,6 +33,7 @@ function App() {
       {/* Ambient drifting background blobs */}
       <div className="ambient-blob blob-1"></div>
       <div className="ambient-blob blob-2"></div>
+      <div className="ambient-blob blob-3"></div>
       
       {/* Interactive Mouse-Following Spotlight */}
       <motion.div
