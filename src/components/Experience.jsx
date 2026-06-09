@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import styles from './Experience.module.css';
@@ -7,17 +6,22 @@ const experiences = [
   {
     company: "AthleteCoach AI",
     role: "Full-Stack Developer",
-    date: "2024 - Present"
+    date: "2025 - Present"
+  },
+  {
+    company: "NexCore ERP",
+    role: "Full-Stack Engineer",
+    date: "2025 - 2026"
   },
   {
     company: "Grassroots Radar",
     role: "Backend Architect",
-    date: "2023 - 2024"
+    date: "2025"
   },
   {
     company: "Outreach Automation",
     role: "Node.js Developer",
-    date: "2023 - 2024"
+    date: "2025"
   },
   {
     company: "GGSIPU, New Delhi",
