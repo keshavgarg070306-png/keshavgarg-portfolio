@@ -21,7 +21,7 @@ const experiences = [
   {
     company: "Outreach Automation",
     role: "Node.js Developer",
-    date: "2025"
+    date: "2026"
   },
   {
     company: "GGSIPU, New Delhi",
