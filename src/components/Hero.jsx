@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './Hero.module.css';
 
@@ -14,7 +13,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
           >
-            Hello, I'm Keshav
+            Hello, I'm <span className="text-gradient">Keshav</span>
           </motion.h1>
         </div>
 
