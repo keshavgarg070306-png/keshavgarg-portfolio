@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
-import Experience from './components/Experience';
+import Numbers from './components/Numbers';
 import Skills from './components/Skills';
+import Process from './components/Process';
+import CommandCenter from './components/CommandCenter';
+import TerminalSection from './components/TerminalSection';
+import Faq from './components/Faq';
 import Contact from './components/Contact';
+import FloatingDock from './components/FloatingDock';
 import { motion } from 'framer-motion';
 
 function App() {
@@ -20,22 +26,14 @@ function App() {
 
   return (
     <div className="app-container" style={{ position: 'relative', overflow: 'hidden' }}>
-      {/* Custom Cursor */}
-      <motion.div
-        className="custom-cursor"
-        animate={{
-          x: mousePosition.x - 16,
-          y: mousePosition.y - 16,
-        }}
-        transition={{ type: "tween", ease: "backOut", duration: 0.15 }}
-      />
+      {/* Top Navbar */}
+      <Navbar />
 
       {/* Ambient drifting background blobs */}
       <div className="ambient-blob blob-1"></div>
       <div className="ambient-blob blob-2"></div>
-      <div className="ambient-blob blob-3"></div>
       
-      {/* Interactive Mouse-Following Spotlight */}
+      {/* Interactive Mouse Spotlight */}
       <motion.div
         className="interactive-bg-glow"
         animate={{
@@ -48,24 +46,34 @@ function App() {
       <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero />
         <Projects />
-        <Experience />
+        <Numbers />
         <Skills />
+        <Process />
+        <CommandCenter />
+        <TerminalSection />
+        <Faq />
         <Contact />
       </main>
       
+      {/* Floating Action Dock */}
+      <FloatingDock />
+      
       <footer style={{
         textAlign: 'center',
-        padding: '2rem',
-        color: 'var(--text-secondary)',
+        padding: '2.5rem 1.5rem',
+        color: 'var(--text-tertiary)',
         borderTop: '1px solid var(--glass-border)',
-        marginTop: '50px',
+        marginTop: '20px',
         position: 'relative',
-        zIndex: 10
+        zIndex: 10,
+        fontFamily: 'var(--font-mono)',
+        fontSize: '0.8rem'
       }}>
-        <p>© {new Date().getFullYear()} Built with React & Framer Motion. Engineered for Performance.</p>
+        <p>© {new Date().getFullYear()} KESHAV GARG — ENGINEERED IN ARCH / LINUX & REACT</p>
       </footer>
     </div>
   );
 }
 
 export default App;
+

@@ -1,49 +1,82 @@
 .skillsSection {
-  padding: 8rem 2rem;
-  max-width: 1200px;
+  padding: 6rem 2rem;
+  max-width: 1280px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .sectionHeader {
-  margin-bottom: 4rem;
-  text-align: right;
+  margin-bottom: 3rem;
 }
 
 .sectionTitle {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  color: #ffffff;
 }
 
-.skillsGrid {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.8rem;
 }
 
-.skillTile {
-  padding: 2.5rem 1.5rem;
+.categoryCard {
   display: flex;
   flex-direction: column;
+}
+
+.categoryTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  border-radius: 24px;
-  cursor: none; /* Inherit custom cursor */
+  gap: 0.6rem;
 }
 
-.skillIcon {
+.categoryIcon {
+  color: var(--accent-lime);
+}
+
+.categoryDesc {
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
 }
 
-.skillTile:hover .skillIcon {
-  color: var(--accent-color);
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 12px rgba(250, 204, 21, 0.4));
+.skillsPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
 }
 
-.skillName {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
+.skillPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.4rem 0.85rem;
+  border-radius: 100px;
+  transition: all 0.25s ease;
+}
+
+.skillPill:hover {
+  border-color: var(--accent-lime);
+  color: var(--accent-lime);
+  background: rgba(191, 255, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }

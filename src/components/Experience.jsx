@@ -83,7 +83,7 @@ const Experience = () => {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <a href="/KCV_FS.pdf" target="_blank" rel="noopener noreferrer" className={styles.resumeBtn}>
+            <a href="/Keshav_Resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.resumeBtn}>
               View resume <ArrowUpRight size={16} />
             </a>
           </motion.div>

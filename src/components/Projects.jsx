@@ -1,130 +1,128 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Database, Zap, Bot, Code2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ExternalLink, Database, Zap, Bot, Code2, ArrowUpRight } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import styles from './Projects.module.css';
 
 const projectsData = [
   {
     title: 'Grassroots Radar',
-    subtitle: 'Full-Stack Analytical Platform',
-    description: 'High-performance platform bridging Scouts and Athletes. Features real-time analytical components, radar-scanning animations, and a secure, decoupled role-specific architecture.',
-    tech: ['Spring Boot', 'React', 'Redis', 'WebSockets'],
-    icon: <Zap size={32} />,
+    subtitle: 'SPORTS RECRUITMENT PLATFORM (2025 - PRESENT)',
+    description: 'Developed a full-stack sports recruitment platform connecting athletes and scouts. Features Framer Motion animations, ApexCharts analytics dashboards, Redis caching with PostgreSQL, real-time WebSocket messaging, and Google OAuth + JWT security.',
+    tech: ['React.js', 'Spring Boot', 'PostgreSQL', 'Redis', 'WebSockets', 'ApexCharts', 'Google OAuth'],
+    icon: <Zap size={24} />,
     image: '/grassroots_radar.png',
     github: 'https://github.com/keshavgarg070306-png/grassroots-backend',
-    live: '#',
-    span: 'col-span-2 row-span-2'
-  },
-  {
-    title: 'NexCore ERP',
-    subtitle: 'Enterprise Systems',
-    description: 'A cloud-native monorepo ERP system. Implements multi-role access control (RBAC), real-time financial auditing, HR payroll dashboards, inventory tracking, and automated stock notifications.',
-    tech: ['Spring Boot', 'React', 'TypeScript', 'Tailwind', 'Docker'],
-    icon: <Code2 size={32} />,
-    image: '/nexcore_erp.png',
-    github: 'https://github.com/keshavgarg070306-png/erp',
-    live: '#',
-    span: 'col-span-1 row-span-2'
+    live: '#'
   },
   {
     title: 'AthleteCoach AI',
-    subtitle: 'Sports Analytics',
-    description: 'Cloud-native microservices platform for athlete performance tracking. Deep integration of AI-driven insights with robust JWT security.',
-    tech: ['Spring Boot', 'React', 'Docker'],
-    icon: <Database size={32} />,
+    subtitle: 'CLOUD-NATIVE MICROSERVICES (2025 - PRESENT)',
+    description: 'Engineered a full stack cloud-native microservices platform supporting concurrent users. Features responsive React.js UI, REST APIs, WebSocket real-time updates, MySQL query indexing, JWT + RBAC security, and CI/CD pipelines for zero-downtime releases.',
+    tech: ['Spring Boot', 'Microservices', 'MySQL', 'React.js', 'JWT', 'WebSockets', 'CI/CD Pipelines'],
+    icon: <Database size={24} />,
     image: '/athletecoach_ai.png',
     github: 'https://github.com/keshavgarg070306-png/athletecoach-ai',
-    live: '#',
-    span: 'col-span-1 row-span-1'
+    live: '#'
+  },
+  {
+    title: 'NexCore ERP',
+    subtitle: 'ENTERPRISE MONOREPO SYSTEM (2025 - 2026)',
+    description: 'Developed a cloud-native monorepo ERP system implementing multi-role access control (RBAC), real-time financial auditing, interactive payroll/HR dashboards with Zod & Zustand, automated inventory tracking, and Docker containerization.',
+    tech: ['Spring Boot', 'React', 'TypeScript', 'Tailwind CSS', 'Zod', 'Zustand', 'Docker'],
+    icon: <Code2 size={24} />,
+    image: '/nexcore_erp.png',
+    github: 'https://github.com/keshavgarg070306-png/erp',
+    live: '#'
   },
   {
     title: 'Outreach Engine',
-    subtitle: 'Workflow Automation',
-    description: 'Developer-centric cold email workflow automation. Parses CSVs, dynamically generates highly personalized, results-oriented emails via Groq AI API.',
-    tech: ['Node.js', 'Groq AI API', 'Gmail API'],
-    icon: <Bot size={32} />,
+    subtitle: 'AI WORKFLOW AUTOMATION',
+    description: 'Developer-centric cold email workflow automation. Parses CSVs, dynamically generates highly personalized, results-oriented emails via Groq AI API and dispatches via Gmail API.',
+    tech: ['Node.js', 'Groq AI API', 'Gmail API', 'Express'],
+    icon: <Bot size={24} />,
     image: '/outreach_engine.png',
     github: 'https://github.com/keshavgarg070306-png/C-emails',
-    live: '#',
-    span: 'col-span-2 row-span-1'
+    live: '#'
   }
 ];
 
 const Projects = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  const handleMouseMove = (e, index) => {
-    const card = document.getElementById(`project-card-${index}`);
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty('--mouse-x', `${x}px`);
-    card.style.setProperty('--mouse-y', `${y}px`);
-  };
-
   return (
     <section className={styles.projectsSection} id="projects">
       <div className={styles.sectionHeader}>
+        <motion.div 
+          className="section-badge"
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="badge-dot"></span>
+          <span>[02] SELECTED SYSTEMS — FEATURED WORKS</span>
+        </motion.div>
+        
         <motion.h2 
           className={styles.sectionTitle}
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
         >
-          Selected <span className="text-gradient">Systems</span>
+          Architected <span className="highlight-italic">solutions</span>.
         </motion.h2>
       </div>
 
-      <div className={styles.bentoGrid}>
+      <div className={styles.grid}>
         {projectsData.map((project, index) => (
           <motion.div 
-            id={`project-card-${index}`}
             key={index} 
-            className={`glass-panel ${styles.bentoCard} ${styles[project.span.split(' ')[0]]} ${styles[project.span.split(' ')[1]]}`}
-            initial={{ opacity: 0, y: 50, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: index * 0.15 }}
-            onMouseMove={(e) => handleMouseMove(e, index)}
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
+            className={`bento-card ${styles.card}`}
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.12 }}
           >
-            {project.image && (
-              <div className={styles.cardImageWrapper}>
-                <img src={project.image} alt={project.title} className={styles.cardImage} />
-                <div className={styles.imageOverlay}></div>
-              </div>
-            )}
-            <div className={styles.cardContent}>
-              <div className={styles.cardHeader}>
-                <div className={styles.iconWrapper}>{project.icon}</div>
-                <div>
-                  <h3 className={styles.projectTitle}>{project.title}</h3>
-                  <p className={styles.projectSubtitle}>{project.subtitle}</p>
+            <div>
+              {project.image && (
+                <div className={styles.imageWrapper}>
+                  <img src={project.image} alt={project.title} className={styles.projectImage} />
+                  <div className={styles.imageOverlay}></div>
                 </div>
-              </div>
-              
-              <div className={styles.revealContent}>
-                <p className={styles.projectDescription}>{project.description}</p>
-                <div className={styles.techStack}>
-                  {project.tech.map((tech, i) => (
-                    <span key={i} className={styles.techBadge}>{tech}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-            
-            <div className={styles.projectLinks}>
-              <a href={project.github} target="_blank" rel="noopener noreferrer" className={styles.linkBtn}>
-                <FaGithub size={18} />
-              </a>
-              {project.live !== '#' && (
-                <a href={project.live} target="_blank" rel="noopener noreferrer" className={styles.linkBtn}>
-                  <ExternalLink size={18} />
-                </a>
               )}
+
+              <div className={styles.cardHeader}>
+                <div className={styles.iconBox}>{project.icon}</div>
+                <div className={styles.links}>
+                  <a 
+                    href={project.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className={styles.linkBtn}
+                    title="View GitHub Repository"
+                  >
+                    <FaGithub size={18} />
+                  </a>
+                  {project.live !== '#' && (
+                    <a 
+                      href={project.live} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className={styles.linkBtn}
+                      title="View Live System"
+                    >
+                      <ArrowUpRight size={18} />
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              <h3 className={styles.cardTitle}>{project.title}</h3>
+              <div className={styles.cardSubtitle}>{project.subtitle}</div>
+              <p className={styles.cardDesc}>{project.description}</p>
+            </div>
+
+            <div className={styles.techList}>
+              {project.tech.map((t, i) => (
+                <span key={i} className={styles.techTag}>{t}</span>
+              ))}
             </div>
           </motion.div>
         ))}

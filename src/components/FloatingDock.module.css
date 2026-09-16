@@ -1,0 +1,50 @@
+.dock {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.dockBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(15, 15, 20, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.dockBtn:hover {
+  background: rgba(191, 255, 0, 0.15);
+  color: var(--accent-lime);
+  border-color: var(--accent-lime);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 15px rgba(191, 255, 0, 0.3);
+}
+
+.dockBtnActive {
+  background: var(--accent-lime);
+  color: #000;
+  border-color: var(--accent-lime);
+}
+
+@media (max-width: 600px) {
+  .dock {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .dockBtn {
+    width: 38px;
+    height: 38px;
+  }
+}

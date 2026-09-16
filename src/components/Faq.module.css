@@ -1,0 +1,62 @@
+.section {
+  padding: 6rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionHeader {
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.accordionList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.faqCard {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faqCard:hover {
+  border-color: rgba(191, 255, 0, 0.3);
+}
+
+.questionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.questionText {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.toggleIcon {
+  color: var(--accent-lime);
+  transition: transform 0.3s ease;
+}
+
+.answerText {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 1rem;
+}
