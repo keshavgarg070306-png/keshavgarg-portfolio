@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
-import { ArrowUp, Terminal as TerminalIcon, Mail, Volume2, VolumeX } from 'lucide-react';
+import { ArrowUp, Terminal as TerminalIcon, Mail, Volume2, VolumeX, Palette } from 'lucide-react';
 import styles from './FloatingDock.module.css';
+
+const themes = ['default', 'cyan', 'amber', 'emerald', 'purple'];
 
 const FloatingDock = () => {
   const [showScroll, setShowScroll] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [themeIdx, setThemeIdx] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +16,17 @@ const FloatingDock = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const cycleTheme = () => {
+    const nextIdx = (themeIdx + 1) % themes.length;
+    setThemeIdx(nextIdx);
+    const nextTheme = themes[nextIdx];
+    if (nextTheme === 'default') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', nextTheme);
+    }
+  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -40,6 +54,18 @@ const FloatingDock = () => {
 
   return (
     <div className={styles.dock}>
+      {/* Theme Accent Cycler */}
+      <button 
+        className={styles.dockBtn} 
+        onClick={() => {
+          cycleTheme();
+          playClickSound();
+        }}
+        title={`Current Accent: ${themes[themeIdx].toUpperCase()} (Click to cycle theme accent)`}
+      >
+        <Palette size={18} />
+      </button>
+
       {/* Sound Toggle */}
       <button 
         className={styles.dockBtn} 

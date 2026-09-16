@@ -25,6 +25,31 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
+/* Dynamic Accent Theme Overrides */
+[data-theme="cyan"] {
+  --accent-lime: #00f0ff;
+  --accent-lime-dim: rgba(0, 240, 255, 0.15);
+  --glass-border-hover: rgba(0, 240, 255, 0.35);
+}
+
+[data-theme="amber"] {
+  --accent-lime: #ffaa00;
+  --accent-lime-dim: rgba(255, 170, 0, 0.15);
+  --glass-border-hover: rgba(255, 170, 0, 0.35);
+}
+
+[data-theme="emerald"] {
+  --accent-lime: #10b981;
+  --accent-lime-dim: rgba(16, 185, 129, 0.15);
+  --glass-border-hover: rgba(16, 185, 129, 0.35);
+}
+
+[data-theme="purple"] {
+  --accent-lime: #a855f7;
+  --accent-lime-dim: rgba(168, 85, 247, 0.15);
+  --glass-border-hover: rgba(168, 85, 247, 0.35);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
